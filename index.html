@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>Error</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div id="lock-div" class="align-items-center d-none" style="left:80%;position: absolute; top:80%; position: absolute">
+		<table>
+			<tr>
+				<td rowspan="=2"><div class="small" id="l-status">Disconnected</div></td>
+			</tr>
+			<tr>
+				<td rowspan="=2"><p>Internal Error Ocurred</p></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="name" id="input-lock" autocomplete="off"/></td>
+				<td><button type="button" onclick="unlockMe()">+</button></td> 
+			</tr>
+		</table>
+	</div>
+
+	<div class="container-fluid" id="main-container">
+		<div class="row h-100 justify-content-center">
+			<!-- Message Area -->
+			<div class="d-none d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100" id="message-area">
+				<div class="w-100 h-100 overlay"></div>
+
+				<!-- Navbar -->
+				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" id="navbar">
+					<div class="d-block d-sm-none">
+						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" onclick="showChatList()"></i>
+					</div>
+					<a href="#"><img src="images/def.png" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
+					<div class="d-flex flex-column">
+						<div class="text-white font-weight-bold" id="name"></div>
+						<div class="text-white small" id="details"></div>
+					</div>
+					<div class="d-flex flex-row align-items-center ml-auto">
+						<!--<a href="#"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
+						<a href="#"><i class="fas fa-paperclip mx-3 text-white d-none d-md-block"></i></a>
+						<a href="#"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white"></i></a>
+						-->
+						<div class="small text-light">Other&nbsp;-&nbsp;</div>
+						<div class="small text-light" id="other-status">Unknown</div>
+					</div>
+				</div>
+
+				<!-- Messages -->
+				<div class="d-flex flex-column" id="messages"></div>
+
+				<!-- Input -->
+				<div class="d-none  justify-self-end align-items-center flex-row" id="input-area">
+					<div class="d-flex flex-fill flex-column ">
+						
+						<div id="in_reply_to_container_id" class="flex-column justify-content-center">
+							<div class="d-flex flex-fill flex-grow flex-row p=1">
+								<div class="d-flex bg-light flex-fill shadow-sm justify-content-center p-2 my-1 mx-5">
+									<div class="rounded flex-fill message-item" >
+										<p class="small" style="margin:0;padding:0;">Reply To:</p>
+										<p id="in-reply-div">xxx</p>
+									</div>
+								</div>
+								<div class="align-self-center" style="cursor:pointer;" onclick="hide_reply_to()">&nbsp;✕&nbsp;</div>
+							</div>
+						</div>
+								
+						<div class="flex-column justify-content-center">
+							<div class="d-flex flex-fill flex-grow flex-row">
+								<div class="align-self-center ">
+									<span><a href="#" id="picker"><i class="far fa-smile text-muted px-3" style="font-size:1.5rem;"></i></a></span>
+								</div>
+								<input type="text" autocomplete="off" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm">
+								<div class="align-self-center">
+								<i class="fas fa-paper-plane text-muted px-3" style="cursor:pointer;" onclick="inspect_outgoing_and_send()"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		var icon_src = "images/def.png";
+	</script>
+
+	<script src="jquery-3.3.1.slim.min.js"> </script>
+	<script src="popper.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<script src="oalljs.js"></script>
+	<script src="fgep.js"></script>
+
+	<script>
+        new FgEmojiPicker({
+            trigger: ['span'],
+            position: ['top', 'right'],
+            emit(obj, triggerElement) {
+              const emoji = obj.emoji;
+              document.getElementById("input").value+=emoji;
+            }
+        });
+  	</script>
+
+</body>
+
+</html>
